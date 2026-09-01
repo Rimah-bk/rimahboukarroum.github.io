@@ -13,6 +13,12 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
+		<div class="liquid-background" aria-hidden="true">
+			<div class="orb orb-1"></div>
+			<div class="orb orb-2"></div>
+			<div class="orb orb-3"></div>
+			<div class="glass-grid"></div>
+		</div>
 
 		<!-- Sidebar -->
 			<section id="sidebar">
@@ -44,43 +50,88 @@
 					</section>
 
 				<!-- One -->
-					<section id="one" class="wrapper style2 spotlights">
-						<section>
-							<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>FM Transceiver Application</h2>
-									<p>A desktop application that receives and transmits FM radio signals, with user-configurable parameters for tuning and signal characteristics. Built in Proteus 8 Professional as part of the Analog Communications lab at LIU — it turned a fixed lab bench exercise into something I could actually experiment with, letting me change transmission parameters and observe the effect on the received signal without rewiring hardware each time.</p>
-									<ul class="actions">
-										<li><a href="generic.html" class="button">Learn more</a></li>
-									</ul>
+					<section id="one" class="wrapper style2 project-showcase">
+						<div class="inner project-intro">
+							<p class="eyebrow">Selected work</p>
+							<h2>Systems, interfaces, and communication tools built with intent.</h2>
+						</div>
+
+						<div class="project-grid inner">
+							<article class="project-card project-card--fm">
+								<div class="project-visual">
+									<div class="mockup mockup--desktop">
+										<span class="mockup-window-bar"></span>
+										<div class="mockup-screen mockup-screen--signal">
+											<!-- Adapted (cropped, recoloured) from "AM and FM signal modulation" by Overvoltage, Wikimedia Commons, CC BY-SA 4.0 -->
+											<img src="images/fm-transceiver.png" alt="FM Transceiver Application showing the baseband message signal and the frequency-modulated carrier" class="signal-shot" />
+										</div>
+									</div>
 								</div>
-							</div>
-						</section>
-						<section>
-							<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>AI Document Assistant</h2>
-									<p>A PDF analysis tool that runs a local model through Ollama to summarize documents and answer questions about their contents. Built with Python, Streamlit for the interface, and PyPDF2 to extract the document text. The problem it solves: searching a long technical PDF with Ctrl+F only finds exact words, and cloud AI tools mean uploading documents you may not want to send anywhere — running the model locally keeps the files on your machine.</p>
-									<ul class="actions">
-										<li><a href="generic.html" class="button">Learn more</a></li>
+								<div class="project-copy">
+									<div class="project-meta">
+										<span>Analog Systems</span>
+										<span>Proteus</span>
+									</div>
+									<h3>FM Transceiver Application</h3>
+									<p>A configurable analog communications lab tool that transforms a static bench setup into an interactive exploration environment for signal behavior and tuning.</p>
+									<ul class="project-tags">
+										<li>Signal tuning</li>
+										<li>Simulation</li>
+										<li>RF experimentation</li>
 									</ul>
+									<a href="project-fm-transceiver.html" class="button">Learn more</a>
 								</div>
-							</div>
-						</section>
-						<section>
-							<a href="#" class="image"><img src="images/pic03.jpg" alt="" data-position="25% 25%" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>Self Defense App</h2>
-									<p>A mobile application built during DOT NGO's mobile app development training program, giving users safety information and guidance. Developed in MIT App Inventor — my first full mobile app, taking me from the interface design through to a working build on a real device.</p>
-									<ul class="actions">
-										<li><a href="generic.html" class="button">Learn more</a></li>
+							</article>
+
+							<article class="project-card project-card--ai">
+								<div class="project-visual">
+									<div class="mockup mockup--laptop">
+										<span class="mockup-window-bar"></span>
+										<div class="mockup-screen mockup-screen--doc">
+											<img src="images/ai-assistant-home.png" alt="AI Study Assistant home screen with PDF upload" class="doc-shot doc-shot--main" />
+											<img src="images/ai-assistant-qa.png" alt="AI Study Assistant answering a question about the uploaded PDF" class="doc-shot doc-shot--detail" />
+										</div>
+									</div>
+								</div>
+								<div class="project-copy">
+									<div class="project-meta">
+										<span>AI tooling</span>
+										<span>Python</span>
+									</div>
+									<h3>AI Document Assistant</h3>
+									<p>A local-first PDF assistant that enables private, contextual inquiry across long technical documents without sending files to external cloud services.</p>
+									<ul class="project-tags">
+										<li>Ollama</li>
+										<li>Streamlit</li>
+										<li>Local AI</li>
 									</ul>
+									<a href="project-ai-assistant.html" class="button">Learn more</a>
 								</div>
-							</div>
-						</section>
+							</article>
+
+							<article class="project-card project-card--mobile">
+								<div class="project-visual">
+									<div class="mockup mockup--phone">
+										<img src="images/self-defense-drawer.jpg" alt="Self Defense App navigation drawer with logo, Help and Emergency Numbers links" class="phone-shot phone-shot--back" />
+										<img src="images/self-defense-menu.jpg" alt="Self Defense App main menu with types of self defense, women courses, defense gear, cyber bullying and motivation sections" class="phone-shot phone-shot--front" />
+									</div>
+								</div>
+								<div class="project-copy">
+									<div class="project-meta">
+										<span>Mobile UX</span>
+										<span>MIT App Inventor</span>
+									</div>
+									<h3>Self Defense App</h3>
+									<p>A personal safety app designed to present essential information clearly and quickly on a mobile device, aimed at accessibility and practical guidance in stressful situations.</p>
+									<ul class="project-tags">
+										<li>App design</li>
+										<li>UX flow</li>
+										<li>Safety guidance</li>
+									</ul>
+									<a href="project-self-defense.html" class="button">Learn more</a>
+								</div>
+							</article>
+						</div>
 					</section>
 
 				<!-- Two -->
@@ -121,7 +172,7 @@
 								</section>
 							</div>
 							<ul class="actions">
-								<li><a href="generic.html" class="button">Learn more</a></li>
+								<li><a href="elements.html" class="button">Learn more</a></li>
 							</ul>
 						</div>
 					</section>
@@ -162,7 +213,7 @@
 										</li>
 										<li>
 											<h3>Email</h3>
-											<a href="mailto:rimahboukarroum@gmail.com">rimahboukarroum@gmail.com</a>
+											<a href="mailto:rimahboukarroum@gmail.com" class="contact-email">rimahboukarroum@gmail.com</a>
 										</li>
 										<li>
 											<h3>Phone</h3>
@@ -190,7 +241,7 @@
 			<footer id="footer" class="wrapper style1-alt">
 				<div class="inner">
 					<ul class="menu">
-						<li>&copy; Rimah Boukarroum. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						<li>&copy; Rimah Boukarroum. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><li>FM signal figure: <a href="https://commons.wikimedia.org/wiki/File:AM_and_FM_signal_modulation.png">Overvoltage</a>, adapted, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
 					</ul>
 				</div>
 			</footer>

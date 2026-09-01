@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>FM Transceiver Application | Rimah Boukarroum</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Rimah Boukarroum</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="index.html#one" class="active">Projects</a></li>
+						<li><a href="elements.html">Skills</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<a href="index.html#one" class="back-link">Back to projects</a>
+
+							<div class="detail-meta project-meta">
+								<span>Analog Systems</span>
+								<span>Proteus</span>
+							</div>
+							<h1 class="major">FM Transceiver Application</h1>
+							<p>A configurable analog communications lab tool built in Proteus that turns a static bench exercise into an interactive environment for exploring how frequency modulation actually behaves — instead of just reading about it.</p>
+
+							<figure class="detail-figure">
+								<img src="images/fm-transceiver.png" alt="Baseband message signal on top, the frequency-modulated carrier below it" />
+								<figcaption>The message signal (top) and the resulting frequency-modulated carrier (bottom): the carrier's frequency compresses and stretches in step with the message amplitude, while its own amplitude stays constant.</figcaption>
+							</figure>
+
+							<h2>Why it exists</h2>
+							<p>Standard communications-lab exercises usually hand students a fixed circuit and a fixed set of values, which makes it easy to reproduce a result without ever building intuition for it. This project rebuilds the classic FM transmit/receive chain as a Proteus simulation whose key parameters — carrier frequency, modulation index, signal amplitude — stay adjustable, so the effect of changing any one of them on the transmitted and recovered signal is immediately visible on the virtual scope.</p>
+
+							<h2>How the signal flows</h2>
+							<p>The circuit mirrors a real analog FM link end to end: a message signal is used to vary the frequency of a carrier, the resulting FM signal is sent across a simulated channel, and a receiver chain pulls the original message back out on the other side.</p>
+
+							<div class="diagram-frame">
+								<svg viewBox="0 0 1060 170" role="img" aria-labelledby="fmDiagramTitle">
+									<title id="fmDiagramTitle">Block diagram: message signal into an FM modulator and transmitter, across a wireless channel, into a receiver, FM demodulator and recovered audio output</title>
+									<defs>
+										<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+											<path d="M0,0 L10,5 L0,10 z" fill="rgba(148,190,255,0.85)" />
+										</marker>
+									</defs>
+									<style>
+										.dblock { fill: rgba(90,150,210,0.12); stroke: rgba(148,190,255,0.55); stroke-width: 1.5; }
+										.dtext { fill: #edf3ff; font-family: Arial, Helvetica, sans-serif; font-size: 15px; text-anchor: middle; }
+										.dline { stroke: rgba(148,190,255,0.75); stroke-width: 2; fill: none; marker-end: url(#arrow); }
+										.dline-dash { stroke: rgba(148,190,255,0.55); stroke-width: 2; stroke-dasharray: 6 6; fill: none; marker-end: url(#arrow); }
+										.dlabel { fill: rgba(237,243,255,0.65); font-family: Arial, Helvetica, sans-serif; font-size: 12px; text-anchor: middle; letter-spacing: 0.05em; }
+									</style>
+
+									<rect class="dblock" x="10" y="45" width="150" height="70" rx="10" />
+									<text class="dtext" x="85" y="85">Message</text>
+									<text class="dtext" x="85" y="103">Signal</text>
+
+									<rect class="dblock" x="195" y="45" width="150" height="70" rx="10" />
+									<text class="dtext" x="270" y="85">FM</text>
+									<text class="dtext" x="270" y="103">Modulator</text>
+
+									<rect class="dblock" x="380" y="45" width="150" height="70" rx="10" />
+									<text class="dtext" x="455" y="94">Transmitter</text>
+
+									<rect class="dblock" x="610" y="45" width="150" height="70" rx="10" />
+									<text class="dtext" x="685" y="94">Receiver</text>
+
+									<rect class="dblock" x="795" y="45" width="150" height="70" rx="10" />
+									<text class="dtext" x="870" y="85">FM</text>
+									<text class="dtext" x="870" y="103">Demodulator</text>
+
+									<line class="dline" x1="160" y1="80" x2="193" y2="80" />
+									<line class="dline" x1="345" y1="80" x2="378" y2="80" />
+									<line class="dline-dash" x1="530" y1="80" x2="608" y2="80" />
+									<text class="dlabel" x="569" y="55">RF channel</text>
+									<line class="dline" x1="760" y1="80" x2="793" y2="80" />
+									<line class="dline" x1="945" y1="80" x2="1000" y2="80" />
+									<text class="dlabel" x="1030" y="84">Audio</text>
+								</svg>
+							</div>
+
+							<h2>What's tunable</h2>
+							<ul>
+								<li><strong>Carrier frequency</strong> — set where in the RF spectrum the transmission sits.</li>
+								<li><strong>Modulation index</strong> — controls how far the carrier frequency swings for a given message amplitude, trading bandwidth for fidelity.</li>
+								<li><strong>Message amplitude &amp; frequency</strong> — lets you observe how a louder or faster input signal reshapes the transmitted waveform in real time.</li>
+							</ul>
+							<p>Because every stage is simulated rather than hard-wired, the same Proteus project doubles as a demo (watch the modulated waveform respond live to a parameter change) and as a lab exercise (predict the outcome, then verify it on the virtual scope).</p>
+
+							<div class="project-nav">
+								<a href="index.html#one" class="button">All projects</a>
+								<a href="project-ai-assistant.html" class="button primary">Next: AI Document Assistant →</a>
+							</div>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Rimah Boukarroum. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><li>FM signal figure: <a href="https://commons.wikimedia.org/wiki/File:AM_and_FM_signal_modulation.png">Overvoltage</a>, adapted, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
