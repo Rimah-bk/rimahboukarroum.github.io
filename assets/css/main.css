@@ -103,17 +103,10 @@ input, select, textarea {
 
 	:root {
 		--bg-base: #02040a;
-		--bg-mid: #060a15;
-		--bg-deep: #01030a;
-		--glass: rgba(255, 255, 255, 0.045);
-		--glass-strong: rgba(255, 255, 255, 0.07);
 		--glass-border: rgba(255, 255, 255, 0.1);
 		--text-main: #edf3ff;
 		--text-soft: rgba(237, 243, 255, 0.74);
-		--fibo-scale: 1;
-		--fibo-amp: 0.6;
 		--scroll-progress: 0;
-		--glow-alpha: 0.35;
 		--card-glow: rgba(142, 191, 255, 0.2);
 	}
 
@@ -139,13 +132,14 @@ input, select, textarea {
 			radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 24%),
 			radial-gradient(circle at 70% 50%, rgba(255,255,255,0.04), transparent 26%),
 			radial-gradient(circle at 50% 85%, rgba(255,255,255,0.05), transparent 20%);
-		filter: blur(30px);
-		opacity: calc(0.55 + var(--glow-alpha) * 0.3);
+		filter: blur(24px);
+		opacity: 0.62;
 	}
 
 	.liquid-background::after {
-		transform: scale(calc(1.1 + var(--fibo-amp) * 0.05)) translate3d(0, calc(var(--scroll-progress) * 120px), 0);
-		opacity: calc(0.3 + var(--glow-alpha) * 0.3);
+		transform: translate3d(0, calc(var(--scroll-progress) * 120px), 0);
+		opacity: 0.4;
+		will-change: transform;
 	}
 
 	.orb {
@@ -153,11 +147,9 @@ input, select, textarea {
 		border-radius: 50%;
 		filter: blur(52px);
 		background: rgba(255, 255, 255, 0.08);
-		backdrop-filter: blur(24px);
-		-webkit-backdrop-filter: blur(24px);
-		mix-blend-mode: screen;
 		opacity: 0.4;
-		transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+		will-change: transform;
+		transform: translateZ(0);
 	}
 
 	.orb-1 {
@@ -165,7 +157,7 @@ input, select, textarea {
 		height: 34rem;
 		left: -8rem;
 		top: 1rem;
-		background: rgba(60, 110, 190, 0.16);
+		background: rgba(60, 110, 190, 0.34);
 	}
 
 	.orb-2 {
@@ -173,7 +165,7 @@ input, select, textarea {
 		height: 30rem;
 		right: 8%;
 		top: 18%;
-		background: rgba(120, 84, 170, 0.12);
+		background: rgba(120, 84, 170, 0.28);
 	}
 
 	.orb-3 {
@@ -181,7 +173,7 @@ input, select, textarea {
 		height: 38rem;
 		left: 28%;
 		bottom: -12%;
-		background: rgba(40, 150, 150, 0.1);
+		background: rgba(40, 150, 150, 0.22);
 	}
 
 	.glass-grid {
@@ -193,6 +185,15 @@ input, select, textarea {
 		background-size: 26px 26px;
 		mask-image: radial-gradient(circle at center, black 42%, transparent 90%);
 		opacity: 0.12;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.orb,
+		.liquid-background::after,
+		.project-card {
+			transform: none !important;
+			transition: none !important;
+		}
 	}
 
 	#sidebar,
@@ -210,7 +211,6 @@ input, select, textarea {
 		background-color: var(--bg-base);
 		color: var(--text-main);
 		background-image: radial-gradient(circle at top, rgba(90, 120, 180, 0.05), transparent 30%), linear-gradient(180deg, #020409 0%, #05080f 40%, #060a12 100%);
-		background-attachment: fixed;
 	}
 
 	body::before {
@@ -232,9 +232,7 @@ input, select, textarea {
 	form,
 	.button,
 	ul.actions li a {
-		backdrop-filter: blur(28px) saturate(120%);
-		-webkit-backdrop-filter: blur(28px) saturate(120%);
-		background: linear-gradient(180deg, var(--glass-strong), var(--glass) 60%, rgba(2, 4, 10, 0.35));
+		background: linear-gradient(180deg, rgba(20, 25, 40, 0.82), rgba(9, 12, 21, 0.9));
 		border: 1px solid var(--glass-border);
 		box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 30px 60px rgba(0, 0, 0, 0.45);
 	}
@@ -270,10 +268,9 @@ input, select, textarea {
 		border-radius: 1.7rem;
 		overflow: hidden;
 		position: relative;
-		transform: translateY(calc(var(--scroll-progress) * 12px));
 		transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
 		background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.008));
-		box-shadow: 0 0 0 1px rgba(255,255,255,0.02), 0 0 calc(30px + var(--glow-alpha) * 20px) var(--card-glow);
+		box-shadow: 0 0 0 1px rgba(255,255,255,0.02), 0 0 40px var(--card-glow);
 	}
 
 	.project-card:hover {
@@ -319,7 +316,7 @@ input, select, textarea {
 		background: radial-gradient(circle, var(--card-accent), transparent 65%);
 		pointer-events: none;
 		filter: blur(30px);
-		opacity: calc(0.18 + var(--glow-alpha) * 0.35);
+		opacity: 0.3;
 		transition: opacity 0.6s ease;
 	}
 
@@ -4443,12 +4440,17 @@ input, select, textarea {
 /* Intro */
 
 	#intro {
-		background-attachment: fixed;
-		background-image: url("images/intro.svg");
-		background-position: top right;
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
+		background: transparent;
+		border: 0;
+		box-shadow: none;
 	}
+
+		/* The hero is always above the fold - show it immediately rather
+		   than waiting on scripts / the fade-up entrance. */
+		#intro > .inner {
+			opacity: 1;
+			transform: none;
+		}
 
 		#intro p {
 			font-size: 1.25em;

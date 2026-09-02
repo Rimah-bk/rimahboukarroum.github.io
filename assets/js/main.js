@@ -10,77 +10,93 @@
 		$body = $('body'),
 		$sidebar = $('#sidebar');
 
-	// Fibonacci sequence drives the pace of the background animation: each
-	// orb/phase cycles on a period taken from the sequence (in seconds), so
-	// the whole scene drifts in and out of phase with itself rather than
-	// pulsing on a single fixed beat.
-	function fibonacciSequence(limit) {
-		var values = [1, 1];
-		while (values[values.length - 1] < limit) {
-			var next = values[values.length - 1] + values[values.length - 2];
-			values.push(next);
+	// Liquid background.
+	//
+	// A handful of cached orb nodes drift on overlapping sine waves. Only
+	// the compositor-friendly `transform` is written per frame — nothing
+	// else on the page is touched — so the loop stays cheap. It also parks
+	// itself whenever the tab is hidden, and does nothing at all when the
+	// user prefers reduced motion.
+	(function() {
+
+		var root = document.documentElement,
+			orbs = Array.prototype.slice.call(document.querySelectorAll('.orb')),
+			reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		// Scroll progress: drives a couple of small CSS translations. Read
+		// is throttled to one rAF and only written when it actually moves.
+		var scrollProgress = -1,
+			scrollQueued = false;
+
+		function updateScrollProgress() {
+			scrollQueued = false;
+			var maxScroll = Math.max(window.innerHeight * 1.8, 2400),
+				next = Math.min((window.pageYOffset || 0) / maxScroll, 1);
+			if (Math.abs(next - scrollProgress) < 0.002)
+				return;
+			scrollProgress = next;
+			root.style.setProperty('--scroll-progress', next.toFixed(3));
 		}
-		return values;
-	}
 
-	var fibValues = fibonacciSequence(89); // [1,1,2,3,5,8,13,21,34,55,89]
-	var maxFib = fibValues[fibValues.length - 1];
-	var scrollProgress = 0;
-
-	function readScrollProgress() {
-		var scrollTop = window.scrollY || window.pageYOffset;
-		var maxScroll = Math.max(window.innerHeight * 1.8, 2400);
-		scrollProgress = Math.min(scrollTop / maxScroll, 1);
-		document.documentElement.style.setProperty('--scroll-progress', scrollProgress.toFixed(4));
-	}
-
-	function animateLiquidBackground(timestamp) {
-		var t = timestamp / 1000;
-
-		// Sum a sine wave per Fibonacci number, each with its own period
-		// (in seconds) and amplitude weighted by its place in the
-		// sequence, so slow, medium and quick drifts overlap organically.
-		var wave = 0;
-		var weightTotal = 0;
-		for (var i = 0; i < fibValues.length; i++) {
-			var fib = fibValues[i];
-			var period = fib * 1.6; // seconds
-			var weight = fib / maxFib;
-			wave += Math.sin((t / period) * Math.PI * 2 + i) * weight;
-			weightTotal += weight;
+		function queueScrollProgress() {
+			if (scrollQueued) return;
+			scrollQueued = true;
+			requestAnimationFrame(updateScrollProgress);
 		}
-		var idle = (wave / weightTotal + 1) / 2; // normalized 0..1
-		var normalized = Math.min(1, idle * 0.6 + scrollProgress * 0.4);
 
-		var hue = Math.round(210 + normalized * 42);
-		var glow = 0.2 + normalized * 0.5;
+		window.addEventListener('scroll', queueScrollProgress, { passive: true });
+		window.addEventListener('resize', queueScrollProgress, { passive: true });
+		updateScrollProgress();
 
-		document.documentElement.style.setProperty('--fibo-scale', (0.75 + normalized * 0.5).toFixed(4));
-		document.documentElement.style.setProperty('--fibo-amp', (0.35 + idle * 1.2).toFixed(4));
-		document.documentElement.style.setProperty('--glow-alpha', glow.toFixed(3));
-		document.documentElement.style.setProperty('--bg-base', 'hsl(' + hue + ', 30%, 3%)');
-		document.documentElement.style.setProperty('--bg-mid', 'hsl(' + (hue + 12) + ', 28%, 5%)');
-		document.documentElement.style.setProperty('--bg-deep', 'hsl(' + (hue + 20) + ', 30%, 2%)');
+		if (!orbs.length || reduceMotion)
+			return;
 
-		$('.orb').each(function(orbIndex) {
-			var fib = fibValues[(orbIndex * 2) % fibValues.length];
-			var period = fib * 2.2;
-			var driftX = Math.sin((t / period) * Math.PI * 2 + orbIndex) * 90 * (0.4 + idle * 0.6);
-			var driftY = Math.cos((t / (period * 1.3)) * Math.PI * 2 + orbIndex) * 70 * (0.4 + idle * 0.6);
-			var scale = 1 + normalized * (0.25 + orbIndex * 0.08);
-			$(this).css({
-				transform: 'translate3d(' + driftX.toFixed(2) + 'px, ' + driftY.toFixed(2) + 'px, 0) scale(' + scale.toFixed(3) + ')',
-				opacity: (0.22 + normalized * 0.35).toFixed(3)
-			});
+		// Fibonacci-flavoured periods (seconds) so the orbs never quite sync.
+		var motion = orbs.map(function(orb, i) {
+			return {
+				el: orb,
+				px: [17, 27, 41][i % 3],
+				py: [17, 27, 41][i % 3] * 1.4,
+				ax: 64 + i * 12,
+				ay: 46 + i * 9,
+				phase: i * 1.7
+			};
 		});
 
-		requestAnimationFrame(animateLiquidBackground);
-	}
+		var rafId = 0,
+			running = false;
 
-	$window.on('scroll', readScrollProgress);
-	$window.on('resize', readScrollProgress);
-	readScrollProgress();
-	requestAnimationFrame(animateLiquidBackground);
+		function frame(now) {
+			var t = now / 1000;
+			for (var i = 0; i < motion.length; i++) {
+				var m = motion[i],
+					x = Math.sin(t / m.px * 6.2831853 + m.phase) * m.ax,
+					y = Math.cos(t / m.py * 6.2831853 + m.phase) * m.ay;
+				m.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)';
+			}
+			rafId = requestAnimationFrame(frame);
+		}
+
+		function start() {
+			if (running) return;
+			running = true;
+			rafId = requestAnimationFrame(frame);
+		}
+
+		function stop() {
+			running = false;
+			if (rafId) cancelAnimationFrame(rafId);
+		}
+
+		document.addEventListener('visibilitychange', function() {
+			if (document.hidden) stop();
+			else start();
+		});
+
+		if (!document.hidden)
+			start();
+
+	})();
 
 	// Breakpoints.
 		breakpoints({
@@ -95,12 +111,22 @@
 		if (browser.name == 'ie')
 			$body.addClass('is-ie');
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+	// Drop the preload state as soon as the DOM is ready, so entrance
+	// animations don't wait on every image to finish downloading. Nudge
+	// Scrollex afterwards so any section already on screen activates right
+	// away instead of waiting for the window 'load' event.
+		(function() {
+			function reveal() {
+				window.setTimeout(function() {
+					$body.removeClass('is-preload');
+					$window.trigger('scroll');
+				}, 50);
+			}
+			if (document.readyState !== 'loading')
+				reveal();
+			else
+				document.addEventListener('DOMContentLoaded', reveal);
+		})();
 
 	// Forms.
 
