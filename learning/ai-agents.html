@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<title>AI Agents | Learning | Rimah Boukarroum</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload learning">
+
+		<a href="#main" class="skip-link">Skip to main content</a>
+
+		<!-- Header -->
+			<header id="header">
+				<a href="../index.html" class="title">Rimah Boukarroum</a>
+				<nav aria-label="Primary">
+					<ul>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../index.html#one">Projects</a></li>
+						<li><a href="../elements.html">Skills</a></li>
+						<li><a href="index.html" class="active" aria-current="page">Learning</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<main id="main" class="wrapper" tabindex="-1">
+						<div class="inner">
+							<a href="index.html" class="back-link">Back to Learning</a>
+
+							<div class="detail-meta project-meta">
+								<span>Agents</span>
+								<span>LLM</span>
+							</div>
+							<h1 class="major">AI Agents</h1>
+							<p>An AI agent is an LLM wrapped in a loop: it reads a goal, decides on an action, calls a tool, observes the result, and repeats until the task is done. This page tracks three points on that spectrum &mdash; Hermes, OpenClaw, and Claude.</p>
+
+							<section>
+								<h2>What it is</h2>
+								<p>Where a chatbot answers a message, an agent pursues an objective across many steps. The core loop is the same everywhere: <strong>plan &rarr; act (call a tool) &rarr; observe &rarr; re-plan</strong>. What differs between systems is the model doing the reasoning, the set of tools it can reach, how much autonomy it's given, and where it runs.</p>
+							</section>
+
+							<section>
+								<h2>Why it matters</h2>
+								<p>Agents are how LLMs move from &ldquo;text in, text out&rdquo; to actually doing work &mdash; editing a codebase, running commands, browsing, calling APIs. The engineering questions become interesting and concrete: how do you expose tools safely, keep the model on track over long tasks, recover from mistakes, and stay in control of what it's allowed to do?</p>
+							</section>
+
+							<section>
+								<h2>Key concepts</h2>
+								<ul>
+									<li><strong>Tool use / function calling</strong> &mdash; the model emits a structured request (a name plus arguments); the runtime executes it and feeds the result back.</li>
+									<li><strong>The agent loop</strong> &mdash; iterate on plan/act/observe until a stopping condition; the context window accumulates the history.</li>
+									<li><strong>Autonomy vs. oversight</strong> &mdash; how much the agent can do without asking, and where a human approval step sits.</li>
+									<li><strong>Context management</strong> &mdash; long tasks overflow the window, so agents summarise, retrieve, or checkpoint state.</li>
+									<li><strong>Deployment</strong> &mdash; local CLI, background service on a server, or embedded in an app &mdash; each with different trust and security trade-offs.</li>
+								</ul>
+							</section>
+
+							<section>
+								<h2>The three I'm looking at</h2>
+
+								<h3>Hermes (Nous Research)</h3>
+								<p>An open-weight model family (Hermes 2 Pro, Hermes 3) fine-tuned from Llama for function calling, structured output, and agentic tool use. Hermes uses a ChatML prompt format with a distinctive XML-tag protocol: tool schemas go in <code>&lt;tools&gt;</code>, and the model replies with <code>&lt;tool_call&gt;{"name": ..., "arguments": ...}&lt;/tool_call&gt;</code>, with results returned in <code>&lt;tool_response&gt;</code>. Hermes 3 adds longer context retention, multi-turn coherence, and an explicit internal-monologue / reasoning style. It's the &ldquo;bring your own model&rdquo; end of the spectrum &mdash; you run the weights and build the loop around them.</p>
+
+								<h3>OpenClaw</h3>
+								<p>A free, open-source autonomous agent (created by Peter Steinberger, formerly &ldquo;clawdbot&rdquo;) that you self-host on your own server. Its interface is a messaging app rather than a terminal, and it's model-agnostic. It codes, browses, remembers across sessions, runs on cron schedules and webhooks, and ships with a large set of integrations. It's described as self-improving because it can write its own new skills to handle tasks it wasn't set up for. The core gateway is MIT-licensed. It sits at the &ldquo;always-on personal assistant&rdquo; end of the spectrum.</p>
+
+								<h3>Claude (Claude Code / Claude Agent SDK)</h3>
+								<p>Anthropic's agent stack. <strong>Claude Code</strong> is a terminal-based coding agent that reads and edits your repo, runs commands, and uses MCP servers for extra tools, with a permission model gating risky actions. The <strong>Claude Agent SDK</strong> exposes the same harness &mdash; the agent loop, tool handling, context management, permissions &mdash; as a library for building custom agents on Claude. It's the &ldquo;managed harness&rdquo; end: the loop and safety scaffolding are provided, you supply the tools and the task.</p>
+							</section>
+
+							<section>
+								<h2>What I've learned / notes</h2>
+								<p><em>Placeholder &mdash; hands-on notes: what each one is good at, where they break, prompt/tool patterns worth reusing.</em></p>
+							</section>
+
+							<section>
+								<h2>Resources</h2>
+								<ul>
+									<li><em>Placeholder &mdash; add Nous Research Hermes model cards / function-calling repo.</em></li>
+									<li><em>Placeholder &mdash; add the OpenClaw repository and docs.</em></li>
+									<li><em>Placeholder &mdash; add Claude Code and Claude Agent SDK documentation.</em></li>
+									<li><em>Placeholder &mdash; add a general write-up on the agent loop / tool-use pattern.</em></li>
+								</ul>
+							</section>
+
+							<nav class="project-nav" aria-label="Learning topics">
+								<a href="mcp.html" class="button"><span aria-hidden="true">&larr;</span> MCPs</a>
+								<a href="index.html" class="button primary">All topics</a>
+							</nav>
+						</div>
+					</main>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Rimah Boukarroum. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>

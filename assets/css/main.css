@@ -657,6 +657,68 @@ input, select, textarea {
 		border-top: 1px solid rgba(255,255,255,0.08);
 	}
 
+/* Accessibility helpers (Learning section) */
+
+	.sr-only {
+		position: absolute !important;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	.skip-link {
+		position: fixed;
+		top: -6em;
+		left: 0.5em;
+		z-index: 11000;
+		padding: 0.75em 1.25em;
+		border-radius: 0 0 0.35em 0.35em;
+		border-bottom: 0;
+		background: #ffffff;
+		color: #312450;
+		font-size: 0.8em;
+		font-weight: bold;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+
+	.skip-link:focus {
+		top: 0;
+		color: #312450;
+	}
+
+	body.learning a:focus-visible,
+	body.learning button:focus-visible,
+	body.learning .button:focus-visible,
+	body.learning input:focus-visible,
+	body.learning textarea:focus-visible {
+		outline: 3px solid #9db8ff;
+		outline-offset: 3px;
+		border-radius: 2px;
+	}
+
+	body.learning #main:focus {
+		outline: 0;
+	}
+
+	/* Make each topic card a single large, focusable target. */
+	body.learning .features section:focus-within {
+		background-color: rgba(157, 184, 255, 0.08);
+		outline: 3px solid #9db8ff;
+		outline-offset: -3px;
+	}
+
+	body.learning .features h3 a::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+	}
+
 	body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 			-moz-animation: none !important;
 			-webkit-animation: none !important;
@@ -3993,14 +4055,6 @@ input, select, textarea {
 						}
 
 		@media screen and (max-width: 736px) {
-
-			#header {
-				padding: 1em 2em;
-			}
-
-		}
-
-		@media screen and (max-width: 480px) {
 
 			#header {
 				display: block;

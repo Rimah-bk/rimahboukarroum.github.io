@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html lang="en">
+	<head>
+		<title>MCPs | Learning | Rimah Boukarroum</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload learning">
+
+		<a href="#main" class="skip-link">Skip to main content</a>
+
+		<!-- Header -->
+			<header id="header">
+				<a href="../index.html" class="title">Rimah Boukarroum</a>
+				<nav aria-label="Primary">
+					<ul>
+						<li><a href="../index.html">Home</a></li>
+						<li><a href="../index.html#one">Projects</a></li>
+						<li><a href="../elements.html">Skills</a></li>
+						<li><a href="index.html" class="active" aria-current="page">Learning</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<main id="main" class="wrapper" tabindex="-1">
+						<div class="inner">
+							<a href="index.html" class="back-link">Back to Learning</a>
+
+							<div class="detail-meta project-meta">
+								<span>LLM Tooling</span>
+								<span>Protocol</span>
+							</div>
+							<h1 class="major">MCPs</h1>
+							<p>Model Context Protocol &mdash; an open standard (introduced by Anthropic in late 2024) for connecting LLM applications to external tools, data, and prompts through one uniform interface, instead of a bespoke integration per tool.</p>
+
+							<section>
+								<h2>What it is</h2>
+								<p>MCP is often described as &ldquo;USB-C for AI tools.&rdquo; It defines how an LLM application talks to a small program &mdash; an <strong>MCP server</strong> &mdash; that exposes capabilities the model can use: functions to call, data to read, and prompt templates to reuse. Any MCP-compatible application can use any MCP server without writing custom glue for it.</p>
+							</section>
+
+							<section>
+								<h2>Why it matters</h2>
+								<p>Before MCP, every assistant re-implemented every integration: one connector for GitHub, another for a database, another for a filesystem, each tied to one app. MCP turns those into reusable servers. Write a server once and it works in Claude Desktop, Claude Code, IDE extensions, and other clients. It also creates a clean security boundary &mdash; the host controls which servers connect and what the model is allowed to invoke.</p>
+							</section>
+
+							<section>
+								<h2>Key concepts</h2>
+								<ul>
+									<li><strong>Host, client, server</strong> &mdash; the <em>host</em> is the LLM app (Claude Desktop, an IDE). It runs one <em>client</em> per connection, and each client talks to exactly one <em>server</em>.</li>
+									<li><strong>Server primitives</strong> &mdash; <strong>tools</strong> (functions the model can call, e.g. <code>search_issues</code>), <strong>resources</strong> (readable content such as files or records), and <strong>prompts</strong> (parameterised prompt templates the user can invoke).</li>
+									<li><strong>Client primitives</strong> &mdash; <strong>sampling</strong> (a server can ask the host to run an LLM completion) and <strong>roots</strong> (the host tells the server which files/directories are in scope).</li>
+									<li><strong>Transports</strong> &mdash; <code>stdio</code> for a local subprocess, and Streamable HTTP (with Server-Sent Events) for remote servers.</li>
+									<li><strong>Messaging</strong> &mdash; JSON-RPC 2.0, with a capability negotiation handshake when the connection opens.</li>
+								</ul>
+							</section>
+
+							<section>
+								<h2>How it actually works</h2>
+								<p>When the host starts, it launches or connects to each configured server and they exchange an <code>initialize</code> handshake declaring what each side supports. The client then asks the server for its catalogue: <code>tools/list</code>, <code>resources/list</code>, <code>prompts/list</code>. The host presents the tools to the model. When the model decides to use one, it emits a tool call; the client forwards it as <code>tools/call</code>; the server runs the actual code (hitting an API, reading a file, querying a database) and returns a structured result, which the client feeds back into the model's context. Resources work the same way but are read rather than executed, and prompts are expanded into messages before the conversation starts.</p>
+							</section>
+
+							<section>
+								<h2>What I've learned / notes</h2>
+								<p><em>Placeholder &mdash; notes from building or configuring a server, the SDK I used, and anything that surprised me about tool schemas or transports.</em></p>
+							</section>
+
+							<section>
+								<h2>Resources</h2>
+								<ul>
+									<li><a href="https://modelcontextprotocol.io">modelcontextprotocol.io</a> &mdash; introduction and guides</li>
+									<li><em>Placeholder &mdash; add the protocol specification link.</em></li>
+									<li><em>Placeholder &mdash; add the official servers repository.</em></li>
+									<li><em>Placeholder &mdash; add SDK docs for the language I'm using.</em></li>
+								</ul>
+							</section>
+
+							<nav class="project-nav" aria-label="Learning topics">
+								<a href="geo.html" class="button"><span aria-hidden="true">&larr;</span> GEO</a>
+								<a href="ai-agents.html" class="button primary">Next: AI Agents <span aria-hidden="true">&rarr;</span></a>
+							</nav>
+						</div>
+					</main>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Rimah Boukarroum. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrollex.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>
