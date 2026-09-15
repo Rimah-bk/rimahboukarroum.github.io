@@ -212,6 +212,19 @@ img {
 	padding: 9px 18px;
 }
 
+/* Shared "large" pill size, used by both the hero and Contact CTAs
+   (was previously the same padding/font-size declared twice, once per
+   section). Ghost buttons get 2px less horizontal padding than primary
+   ones so the visible border doesn't make them look wider. */
+.button-pill--lg {
+	padding: 15px 30px;
+	font-size: 15px;
+}
+
+.button-pill--lg.button-pill--ghost {
+	padding: 15px 28px;
+}
+
 /* Hero */
 
 #home {
@@ -272,16 +285,6 @@ img {
 	gap: 16px;
 	align-items: center;
 	flex-wrap: wrap;
-}
-
-.hero-actions .button-pill--primary {
-	padding: 15px 30px;
-	font-size: 15px;
-}
-
-.hero-actions .button-pill--ghost {
-	padding: 15px 26px;
-	font-size: 15px;
 }
 
 .scroll-cue {
@@ -559,15 +562,6 @@ section {
 	flex-wrap: wrap;
 	gap: 14px;
 	margin-top: 32px;
-}
-
-.contact-actions .button-pill {
-	padding: 16px 28px;
-	font-size: 15px;
-}
-
-.contact-actions .button-pill--ghost {
-	padding: 16px 26px;
 }
 
 .contact-address {
