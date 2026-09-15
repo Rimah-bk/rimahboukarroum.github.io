@@ -1,260 +1,174 @@
-<!DOCTYPE HTML>
-<!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
-		<title>Rimah Boukarroum | Portfolio</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<title>Rimah Boukarroum | Portfolio</title>
+		<meta name="description" content="Rimah Boukarroum — Computer and Communications Engineering student in Beirut, building practical systems across networking, software, and embedded technologies." />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+		<link rel="stylesheet" href="assets/css/style.css" />
 	</head>
-	<body class="is-preload">
-		<div class="liquid-background" aria-hidden="true">
-			<div class="orb orb-1"></div>
-			<div class="orb orb-2"></div>
-			<div class="orb orb-3"></div>
-			<div class="glass-grid"></div>
-		</div>
+	<body>
 
-		<!-- Sidebar -->
-			<section id="sidebar">
-				<div class="inner">
-					<nav>
-						<ul>
-							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#one">Projects</a></li>
-							<li><a href="learning/index.html">Learning</a></li>
-							<li><a href="#two">About Me</a></li>
-							<li><a href="#three">Get in touch</a></li>
-						</ul>
-					</nav>
-				</div>
-			</section>
+		<a href="#main" class="skip-link">Skip to main content</a>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+		<div class="cursor-glow" aria-hidden="true"></div>
 
-				<!-- Intro -->
-					<section id="intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
-							<h1>Rimah Boukarroum</h1>
-							<p>Computer and Communications Engineering student at the Lebanese International University in Beirut.<br />
-							I build practical systems where networking, software, and embedded technologies meet.</p>
-							<ul class="actions">
-								<li><a href="#one" class="button scrolly">View my work</a></li>
-							</ul>
+		<!-- Header -->
+			<header id="header">
+				<a href="#home" class="logo">RB<span class="dot">.</span></a>
+				<nav aria-label="Primary">
+					<a href="#projects" class="nav-link">Work</a>
+					<a href="#about" class="nav-link">About</a>
+					<a href="#writing" class="nav-link">Writing</a>
+					<a href="#contact" class="nav-link">Contact</a>
+					<a href="assets/Rimah_Boukarroum_CV.pdf" download="Rimah_Boukarroum_CV.pdf" class="button-pill button-pill--primary button-resume magnetic">Resume</a>
+				</nav>
+			</header>
+
+			<main id="main" tabindex="-1">
+
+				<!-- Hero -->
+					<section id="home">
+						<div class="grid-backdrop" aria-hidden="true"></div>
+						<p class="eyebrow">Computer &amp; Communications Engineering</p>
+						<h1 class="hero-title">Rimah<br />Boukarroum</h1>
+						<p class="hero-lede">I build practical systems where networking, software, and embedded technologies meet — based in Beirut, Lebanon.</p>
+						<div class="hero-actions">
+							<a href="#projects" class="button-pill button-pill--primary magnetic">View my work</a>
+							<a href="#contact" class="button-pill button-pill--ghost">Get in touch</a>
+						</div>
+						<div class="scroll-cue" aria-hidden="true">
+							<span>Scroll</span>
+							<svg width="16" height="24" viewBox="0 0 16 24"><line x1="8" y1="0" x2="8" y2="20" stroke="oklch(60% 0.02 258)" stroke-width="1.5"></line><path d="M2 14 L8 20 L14 14" stroke="oklch(60% 0.02 258)" stroke-width="1.5" fill="none"></path></svg>
 						</div>
 					</section>
 
-				<!-- One -->
-					<section id="one" class="wrapper style2 project-showcase">
-						<div class="inner project-intro">
-							<p class="eyebrow">Selected work</p>
-							<h2>Systems, interfaces, and communication tools built with intent.</h2>
+				<!-- Projects -->
+					<section id="projects">
+						<div data-reveal="projects-heading">
+							<p class="section-label">Selected Work</p>
+							<h2 class="section-title">Projects</h2>
 						</div>
+						<div class="project-grid">
 
-						<div class="project-grid inner">
-							<article class="project-card project-card--fm">
-								<div class="project-visual">
-									<div class="mockup mockup--desktop">
-										<span class="mockup-window-bar"></span>
-										<div class="mockup-screen mockup-screen--signal">
-											<!-- Adapted (cropped, recoloured) from "AM and FM signal modulation" by Overvoltage, Wikimedia Commons, CC BY-SA 4.0 -->
-											<img src="images/fm-transceiver.png" alt="FM Transceiver Application showing the baseband message signal and the frequency-modulated carrier" class="signal-shot" />
-										</div>
+							<div data-reveal="project-0">
+								<div class="project-card">
+									<div class="project-thumb">
+										<img src="images/fm-transceiver.png" alt="FM Transceiver Application signal display" loading="lazy" />
+									</div>
+									<div class="project-body">
+										<h3>FM Transceiver Application</h3>
+										<p>A desktop application that receives and transmits FM radio signals, with user-configurable parameters for tuning and signal characteristics. Built for the Analog Communications lab at LIU — it turned a fixed bench exercise into something I could experiment with, changing transmission parameters and observing the effect on the received signal without rewiring hardware each time.</p>
+										<span class="project-tool">Proteus 8 Professional</span>
 									</div>
 								</div>
-								<div class="project-copy">
-									<div class="project-meta">
-										<span>Analog Systems</span>
-										<span>Proteus</span>
-									</div>
-									<h3>FM Transceiver Application</h3>
-									<p>A configurable analog communications lab tool that transforms a static bench setup into an interactive exploration environment for signal behavior and tuning.</p>
-									<ul class="project-tags">
-										<li>Signal tuning</li>
-										<li>Simulation</li>
-										<li>RF experimentation</li>
-									</ul>
-									<a href="project-fm-transceiver.html" class="button">Learn more</a>
-								</div>
-							</article>
-
-							<article class="project-card project-card--ai">
-								<div class="project-visual">
-									<div class="mockup mockup--laptop">
-										<span class="mockup-window-bar"></span>
-										<div class="mockup-screen mockup-screen--doc">
-											<img src="images/ai-assistant-home.png" alt="AI Study Assistant home screen with PDF upload" class="doc-shot doc-shot--main" />
-											<img src="images/ai-assistant-qa.png" alt="AI Study Assistant answering a question about the uploaded PDF" class="doc-shot doc-shot--detail" />
-										</div>
-									</div>
-								</div>
-								<div class="project-copy">
-									<div class="project-meta">
-										<span>AI tooling</span>
-										<span>Python</span>
-									</div>
-									<h3>AI Document Assistant</h3>
-									<p>A local-first PDF assistant that enables private, contextual inquiry across long technical documents without sending files to external cloud services.</p>
-									<ul class="project-tags">
-										<li>Ollama</li>
-										<li>Streamlit</li>
-										<li>Local AI</li>
-									</ul>
-									<a href="project-ai-assistant.html" class="button">Learn more</a>
-								</div>
-							</article>
-
-							<article class="project-card project-card--mobile">
-								<div class="project-visual">
-									<div class="mockup mockup--phone">
-										<img src="images/self-defense-drawer.jpg" alt="Self Defense App navigation drawer with logo, Help and Emergency Numbers links" class="phone-shot phone-shot--back" />
-										<img src="images/self-defense-menu.jpg" alt="Self Defense App main menu with types of self defense, women courses, defense gear, cyber bullying and motivation sections" class="phone-shot phone-shot--front" />
-									</div>
-								</div>
-								<div class="project-copy">
-									<div class="project-meta">
-										<span>Mobile UX</span>
-										<span>MIT App Inventor</span>
-									</div>
-									<h3>Self Defense App</h3>
-									<p>A personal safety app designed to present essential information clearly and quickly on a mobile device, aimed at accessibility and practical guidance in stressful situations.</p>
-									<ul class="project-tags">
-										<li>App design</li>
-										<li>UX flow</li>
-										<li>Safety guidance</li>
-									</ul>
-									<a href="project-self-defense.html" class="button">Learn more</a>
-								</div>
-							</article>
-						</div>
-					</section>
-
-				<!-- Two -->
-					<section id="two" class="wrapper style3 fade-up">
-						<div class="inner">
-							<h2>About Me</h2>
-							<p>I'm Rimah Boukarroum, a Computer and Communications Engineering student based in Beirut, Lebanon. My work sits at the intersection of networking and software development, with a strong interest in signal processing, embedded systems, and communication technologies. I’ve gained hands-on experience with fiber and copper infrastructure during an internship at Ogero Telecom, and I enjoy building tools and applications that solve real engineering problems. I am especially interested in projects that connect hardware, data, and user experience in practical ways.</p>
-							<div class="features">
-								<section>
-									<span class="icon solid major fa-code"></span>
-									<h3>Software Development</h3>
-									<p>Building practical tools and user-facing applications with clean logic and real-world usefulness.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-network-wired"></span>
-									<h3>Networking</h3>
-									<p>Exploring reliable communication systems, infrastructure, and data flow.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-cog"></span>
-									<h3>Embedded & Hardware</h3>
-									<p>Working on systems close to physical components where software meets signal and control.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-desktop"></span>
-									<h3>Web & Interfaces</h3>
-									<p>Designing responsive digital experiences and tools that make technical work clearer and easier to use.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-link"></span>
-									<h3>Communication Systems</h3>
-									<p>Interested in the infrastructure and signal paths that keep data moving reliably.</p>
-								</section>
-								<section>
-									<span class="icon major fa-gem"></span>
-									<h3>Growth</h3>
-									<p>I’m driven by continuous learning and the opportunity to contribute in dynamic engineering environments.</p>
-								</section>
 							</div>
-							<ul class="actions">
-								<li><a href="elements.html" class="button">Learn more</a></li>
-							</ul>
+
+							<div data-reveal="project-1">
+								<div class="project-card">
+									<div class="project-thumb">
+										<img src="images/ai-assistant-home.png" alt="AI Document Assistant home screen" loading="lazy" />
+									</div>
+									<div class="project-body">
+										<h3>AI Document Assistant</h3>
+										<p>A PDF analysis tool that runs a local model through Ollama to summarize documents and answer questions about their contents, using PyPDF2 to extract text. Searching a long technical PDF with Ctrl+F only finds exact words, and cloud AI tools mean uploading documents you may not want to send anywhere — running the model locally keeps files on the machine.</p>
+										<span class="project-tool">Python · Streamlit · Ollama</span>
+									</div>
+								</div>
+							</div>
+
+							<div data-reveal="project-2">
+								<div class="project-card">
+									<div class="project-thumb">
+										<img src="images/self-defense-menu.jpg" alt="Self Defense App main menu" loading="lazy" />
+									</div>
+									<div class="project-body">
+										<h3>Self Defense App</h3>
+										<p>A mobile application built during DOT NGO's mobile app development training program, giving users safety information and guidance. My first full mobile app, taking me from interface design through to a working build on a real device.</p>
+										<span class="project-tool">MIT App Inventor</span>
+									</div>
+								</div>
+							</div>
+
 						</div>
 					</section>
 
-				<!-- Three -->
-					<section id="three" class="wrapper style1 fade-up">
-						<div class="inner">
-							<h2>Get in touch</h2>
-							<p>I’m open to internships, collaboration, and engineering opportunities where I can contribute to meaningful technical work.</p>
-							<div class="split style1">
-								<section>
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<label for="name">Name</label>
-												<input type="text" name="name" id="name" />
-											</div>
-											<div class="field half">
-												<label for="email">Email</label>
-												<input type="text" name="email" id="email" />
-											</div>
-											<div class="field">
-												<label for="message">Message</label>
-												<textarea name="message" id="message" rows="5"></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><a href="#" class="button submit">Send Message</a></li>
-										</ul>
-									</form>
-								</section>
-								<section>
-									<ul class="contact">
-										<li>
-											<h3>Address</h3>
-											<span>Mazraat El Chouf, Chouf,<br />
-											Mount Lebanon</span>
-										</li>
-										<li>
-											<h3>Email</h3>
-											<a href="mailto:rimahboukarroum@gmail.com" class="contact-email">rimahboukarroum@gmail.com</a>
-										</li>
-										<li>
-											<h3>Phone</h3>
-											<a href="tel:+96170359261">+961 70359261</a>
-										</li>
-										<li>
-											<h3>Social</h3>
-											<ul class="icons">
-												<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-												<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-												<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-												<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-												<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-											</ul>
-										</li>
-									</ul>
-								</section>
+				<!-- About -->
+					<section id="about">
+						<div class="about-layout" data-reveal="about">
+							<div class="about-photo">
+								<img src="images/Personal Photo.png" alt="Rimah Boukarroum" />
+							</div>
+							<div>
+								<p class="section-label">About</p>
+								<h2 class="section-title">Where networking meets software.</h2>
+								<p class="about-bio">I'm a Computer and Communications Engineering student based in Beirut, Lebanon. My work sits at the intersection of networking and software development, with a strong interest in signal processing, embedded systems, and communication technologies. I've gained hands-on experience with fiber and copper infrastructure during an internship at Ogero Telecom, and I enjoy building tools that solve real engineering problems.</p>
+								<div class="skills-grid" data-reveal="skills">
+									<div class="skill-card">
+										<h3>Software Development</h3>
+										<p>Building practical tools and user-facing applications with clean logic and real-world usefulness.</p>
+									</div>
+									<div class="skill-card">
+										<h3>Networking</h3>
+										<p>Exploring reliable communication systems, infrastructure, and data flow.</p>
+									</div>
+									<div class="skill-card">
+										<h3>Embedded &amp; Hardware</h3>
+										<p>Working on systems close to physical components where software meets signal and control.</p>
+									</div>
+									<div class="skill-card">
+										<h3>Web &amp; Interfaces</h3>
+										<p>Designing responsive digital experiences and tools that make technical work clearer.</p>
+									</div>
+									<div class="skill-card">
+										<h3>Communication Systems</h3>
+										<p>Interested in the infrastructure and signal paths that keep data moving reliably.</p>
+									</div>
+									<div class="skill-card">
+										<h3>Growth</h3>
+										<p>Driven by continuous learning and contributing in dynamic engineering environments.</p>
+									</div>
+								</div>
 							</div>
 						</div>
 					</section>
 
-			</div>
+				<!-- Writing -->
+					<section id="writing">
+						<div data-reveal="writing">
+							<p class="section-label">Writing</p>
+							<h2 class="section-title">Notes &amp; write-ups</h2>
+							<div class="writing-empty">
+								<p>No posts published yet — check back soon.</p>
+							</div>
+						</div>
+					</section>
+
+				<!-- Contact -->
+					<section id="contact">
+						<div data-reveal="contact">
+							<p class="section-label">Get in touch</p>
+							<h2 class="contact-title">Open to internships and engineering collaborations.</h2>
+							<div class="contact-actions">
+								<a href="mailto:rimahboukarroum@gmail.com" class="button-pill button-pill--primary magnetic">rimahboukarroum@gmail.com</a>
+								<a href="tel:+96170359261" class="button-pill button-pill--ghost">+961 70 359 261</a>
+								<a href="https://github.com/RimahBk" target="_blank" rel="noopener" class="button-pill button-pill--ghost">GitHub</a>
+								<a href="assets/Rimah_Boukarroum_CV.pdf" download="Rimah_Boukarroum_CV.pdf" class="button-pill button-pill--ghost">Download CV</a>
+							</div>
+							<p class="contact-address">Mazraat El Chouf, Chouf, Mount Lebanon</p>
+						</div>
+					</section>
+
+			</main>
 
 		<!-- Footer -->
-			<footer id="footer" class="wrapper style1-alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Rimah Boukarroum. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li><li>FM signal figure: <a href="https://commons.wikimedia.org/wiki/File:AM_and_FM_signal_modulation.png">Overvoltage</a>, adapted, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></li>
-					</ul>
-				</div>
+			<footer id="footer">
+				<p>&copy; 2026 Rimah Boukarroum. All rights reserved.</p>
 			</footer>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="assets/js/main.js"></script>
 
 	</body>
 </html>
